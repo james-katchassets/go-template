@@ -6,9 +6,7 @@ import (
 	"time"
 )
 
-type Date struct {
-	time.Time
-}
+type Date time.Time
 
 type EmailAddress struct {
 	mail.Address
@@ -137,18 +135,19 @@ type KegDto struct {
 	IsVenueWarning bool       `json:"isVenueWarning"`
 }
 
-func (d *Date) MarshalJSON() ([]byte, error) {
-	return []byte(d.Format("2006-01-02")), nil
+func (d Date) MarshalJSON() ([]byte, error) {
+	ts := time.Time(d)
+	return []byte(`"` + ts.Format(`2006-01-02`) + `"`), nil
 }
 
-func (e *EmailAddress) MarshalJSON() ([]byte, error) {
+func (e EmailAddress) MarshalJSON() ([]byte, error) {
 	return []byte(e.String()), nil
 }
 
-func (tz *TimeZone) MarshalJSON() ([]byte, error) {
+func (tz TimeZone) MarshalJSON() ([]byte, error) {
 	return []byte(tz.String()), nil
 }
 
-func (tz *TimeZone) UnmarshalJSON(data []byte) error {
+func (tz TimeZone) UnmarshalJSON(data []byte) error {
 	return tz.UnmarshalJSON(data)
 }
