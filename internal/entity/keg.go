@@ -92,12 +92,12 @@ type KegDto struct {
 		Location     Location     `json:"location"`
 	} `json:"location,omitempty"`
 	Product struct {
-		Id   string `json:"id""`
-		Name string `json:"name""`
+		Id   string `json:"id"`
+		Name string `json:"name"`
 	} `json:"product,omitempty"`
 	Batch struct {
 		Id             uuid.UUID `json:"id"`
-		productId      uuid.UUID `json:"productId"`
+		ProductId      uuid.UUID `json:"productId"`
 		Name           string    `json:"name"`
 		BestBeforeDate Date      `json:"bestBeforeDate"`
 		Kegs           struct {
@@ -106,7 +106,7 @@ type KegDto struct {
 			AddedBy   struct {
 				Id    uuid.UUID    `json:"id"`
 				Email EmailAddress `json:"email"`
-			} `json:"notifications"`
+			} `json:"addedBy"`
 			FirstName     string `json:"firstName"`
 			LastName      string `json:"lastName"`
 			Phone         string `json:"phone"`
